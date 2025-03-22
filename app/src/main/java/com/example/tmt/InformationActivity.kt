@@ -1,5 +1,6 @@
 package com.example.tmt
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -27,13 +28,20 @@ class InformationActivity : AppCompatActivity() {
         btnBackMain = findViewById(R.id.buttonBackMain)
 
         btnConfirm.setOnClickListener {
+            val intent = Intent(this, TMTAInformation::class.java)
+
+
             if (patientName.text.toString().isEmpty()) {
                 patientName.error = "Nome do paciente é obrigatório"
             } else if (patientAge.text.toString().isEmpty()) {
                 patientAge.error = "Idade é obrigatória"
             } else if (profissionalName.text.toString().isEmpty()) {
                 profissionalName.error = "Nome do aplicador é obrigatório"
-            }
+            } else (
+                    startActivity(intent)
+            )
+
+
         }
 
         btnBackMain.setOnClickListener {
