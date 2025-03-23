@@ -26,6 +26,6 @@ class TestCompletedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        }
+
     }
 }
