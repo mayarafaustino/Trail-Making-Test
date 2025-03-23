@@ -17,25 +17,20 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private val pathManager = PathManager()
     val paths = pathManager.paths
 
+    private var touchUpCount = 0 //Contador de toque levantado
+    private var lastCircleTouchedIndex = -1
 
-    private var currentCircle = 0
-
-    private var lastConnectedCircle = -1
-    private var touchUpCount = 0
-    private val outOfOrderCircles = mutableSetOf<Int>()
-    private var outOfOrderCount = 0
-//    private val outOfOrderAttempts = mutableMapOf<Int, Int>() //Mapa para tentativas fora de ordem
-//    private val outOfOrderAttempts = Pair
-    private val outOfOrderAttempts = mutableListOf<OutOfOrderAttempt>()
-    private var lastCircleTouched = -1
-
-    private var startTime = 0L //Tempo inicial
-    private val pointTimes = mutableListOf<Long>() //Tempo entre pontos
+    private val startPathTimes = mutableListOf<Long>() //tempo de início de cada path
+    private val startTouchUpTimes = mutableListOf<Long>() //Tempo entre pontos
     private val circleTimes = mutableListOf<Long>() //Tempo entre círculos
-    private val connectedCirclesSet = mutableSetOf<Int>() //Conjunto de círculos conectados
-    private val outOfOrderSet = mutableSetOf<Int>() //Conjunto de circulos fora de ordem ja contados.
 
-    override fun onDraw(canvas: Canvas) {
+    private var leftTheLastCircle = false
+    private val connections = mutableListOf<Connection>()
+    private val circlesTouchedIndex = mutableListOf<Int>()
+    private var isTestFinished = false
+
+    override fun onDraw(canvas: Canvas)
+    {
         super.onDraw(canvas)
 
         //Desenha os círculos
@@ -70,22 +65,25 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         when (event.action)
         {
             MotionEvent.ACTION_DOWN -> {
-                if (!pathManager.isDrawing) {
+                if (!pathManager.isDrawing)
+                {
                     pathManager.startPath(x, y)
-                    startTime = System.currentTimeMillis() //Inicia o timer
-                    pointTimes.clear() //Limpa tempos entre pontos
-                    pointTimes.add(startTime) //Adiciona tempo inicial
-                } else {
+                    val startPathTime = System.currentTimeMillis()
+                    startPathTimes.add(startPathTime) //Adiciona tempo de início de cada path
+                }
+                else
+                {
                     pathManager.updatePath(x, y)
-                    pointTimes.add(System.currentTimeMillis()) //Adiciona tempo
                 }
                 invalidate()
             }
 
             MotionEvent.ACTION_MOVE -> {
-                if (pathManager.isDrawing) {
+                if (pathManager.isDrawing && !isTestFinished)
+                {
                     pathManager.updatePath(x, y)
                     checkConnection()
+                    checkEndTest()
                     invalidate()
                 }
             }
@@ -93,6 +91,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
             MotionEvent.ACTION_UP -> {
                 pathManager.finishPath()
                 touchUpCount++
+                val startTouchUpTime = System.currentTimeMillis()
+                startTouchUpTimes.add(startTouchUpTime) //Adiciona tempo de início de cada touchUp
                 Log.d("TouchUp", "Toque levantado: $touchUpCount")
             }
         }
@@ -111,21 +111,30 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         return distance <= circle.radius
     }
 
-    //TODO verificar se passou por todos os círculos && chegou no último círculo
     private fun checkEndTest()
     {
-        if (circleManager.isAllCirclesConnected(circlesA))
-            finishGame()
+        if( connections.isEmpty())
+            return
+
+        val isLastCircleTouched = connections.last().circleDestination.ordem == circlesA.lastIndex
+
+        if ( isLastCircleTouched && isAllCirclesTouched(circlesA))
+            finishTest()
     }
 
-    private fun lastCircleIsValid(nextCircleIndex: Int): Boolean
+    private fun isAllCirclesTouched( circles: MutableList<Circle>) : Boolean
     {
-        val lastCircleConnectedIsPreviousCircle = circleManager.connectedCirclesIndexes.last() == nextCircleIndex - 1
-        val pathBetweenCircles = checkPathBetweenCircles( circlesA[circleManager.connectedCirclesIndexes.last()], circlesA[nextCircleIndex] )
+        for (i in 0 until circles.size)
+        {
+            val isNotTouched = !circlesTouchedIndex.contains(i)
+            if (isNotTouched)
+                return false
+        }
 
-        return lastCircleConnectedIsPreviousCircle && pathBetweenCircles
+        return true
     }
 
+    //retorna se algum path toca nos dois círculos
     private fun checkPathBetweenCircles(circle1: Circle, circle2: Circle): Boolean
     {
         var circle1Touched = false
@@ -142,8 +151,6 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         return circle1Touched && circle2Touched
     }
 
-    private var leftTheLastCircle = false
-
     private fun verifyCurrentCircleIndex(circles: MutableList<Circle>): Int
     {
         var currentCircleIndex = -1
@@ -152,7 +159,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         {
             if( !pointIsWithinCircle( pathManager.pathPoints.last(), circles[i] ) )
             {
-                if( i == lastCircleTouched )
+                if( i == lastCircleTouchedIndex )
                     leftTheLastCircle = true
                 continue
             }
@@ -163,94 +170,88 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
     private fun checkConnection()
     {
-        if (circleManager.isAllCirclesConnected(circlesA))
-            return
-
-        var currentCircleIndex = verifyCurrentCircleIndex(circlesA)
+        val currentCircleIndex = verifyCurrentCircleIndex(circlesA)
         if( currentCircleIndex == -1 )
             return
 
-        val nextCorrectCircleIndex = circleManager.connectedCirclesIndexes.size
-        val isOutOfOrderCircle = currentCircleIndex != nextCorrectCircleIndex
+        val isFirstCircle = lastCircleTouchedIndex == -1
+        val nextCorrectCircleIndex = if( isFirstCircle ) 0 else lastCircleTouchedIndex + 1
+        val isSequenceCorrect = currentCircleIndex == nextCorrectCircleIndex
 
-        //Quando o círculo está na ordem correta
-        if( !isOutOfOrderCircle )
+        if( isFirstCircle )
         {
-            val noCircleIsConnected = circleManager.connectedCirclesIndexes.isEmpty()
-
-            if( noCircleIsConnected || lastCircleIsValid(currentCircleIndex) )
-            {
-                if( !noCircleIsConnected )
-                    Log.d( "Connection", "Círculo ${circlesA[currentCircleIndex - 1].text} conectado ao círculo ${circlesA[currentCircleIndex].text}" )
-
-                circleManager.connectedCirclesIndexes.add(currentCircleIndex)
-                circleTimes.add(System.currentTimeMillis()) //Adiciona tempo entre círculos
-                checkEndTest()
-            }
+            circlesTouchedIndex.add(currentCircleIndex)
+            circleTimes.add(System.currentTimeMillis())
         }
 
-        // Quando o círculo está fora de ordem
-        //segunda condição previne que conte mais de uma vez enquanto o traço ainda está passando pelo círculo
-        if ( isOutOfOrderCircle && ( leftTheLastCircle || lastCircleTouched == -1 ) )
-        {
-            val circleIsAlreadyConnected = circleManager.connectedCirclesIndexes.contains(currentCircleIndex)
+        if( !isFirstCircle && leftTheLastCircle )
+            doConnection(currentCircleIndex, isSequenceCorrect)
 
-            if( !outOfOrderSet.contains(currentCircleIndex) )
-                outOfOrderSet.add(currentCircleIndex)
-
-            outOfOrderAttempts.add(OutOfOrderAttempt(currentCircleIndex, circleIsAlreadyConnected))
-            Log.d("OutOfOrder", "Passou pelo círculo ${circlesA[currentCircleIndex].text} fora de ordem!")
-        }
-        lastCircleTouched = currentCircleIndex
+        lastCircleTouchedIndex = currentCircleIndex
         leftTheLastCircle = false
+
     }
 
-    private fun finishGame()
+    private fun doConnection(currentCircleIndex: Int, isSequenceCorrect: Boolean)
+    {
+        //temporario
+        Log.d(
+            "Connection",
+            "Círculo ${circlesA[lastCircleTouchedIndex].text} conectado ao círculo ${circlesA[currentCircleIndex].text}"
+        )
+        //temporario
+
+        circlesTouchedIndex.add(currentCircleIndex)
+        circleTimes.add(System.currentTimeMillis())
+
+        val isPathInterrupted = !checkPathBetweenCircles( circlesA[lastCircleTouchedIndex], circlesA[currentCircleIndex] )
+        val connection = Connection(circlesA[lastCircleTouchedIndex],
+            circlesA[currentCircleIndex],
+            isPathInterrupted,
+            timeBetweenLastConnection(),
+            isSequenceCorrect)
+        connections.add(connection)
+
+    }
+
+    //retorna o tempo em segundos entre o ultimo e penultimo circulo conectado
+    private fun timeBetweenLastConnection(): Long
+    {
+        val connectionTime = circleTimes[circleTimes.size - 1] - circleTimes[circleTimes.size - 2]
+//        return TimeUnit.MILLISECONDS.toSeconds(connectionTime)
+        return connectionTime
+    }
+
+    private fun finishTest()
     {
         val endTime = System.currentTimeMillis()
-        val totalTime = endTime - startTime
-        val seconds = TimeUnit.MILLISECONDS.toSeconds(totalTime)
-        var finishTime = 0L
+        val totalTime = if( startPathTimes.isEmpty() ) 0L else endTime - startPathTimes.first()
 
-
-        for (i in 1 until circleTimes.size) {
-            val timeDiff = circleTimes[i] - circleTimes[i - 1]
-            val secondsDiff = TimeUnit.MILLISECONDS.toSeconds(timeDiff)
-            finishTime += secondsDiff
-        }
-
-        println("Parabéns! Você conectou todos os círculos em ${finishTime} segundos!")
-
+        println("Teste Finalizado")
+        println("Tempo total: $totalTime milissegundos")
         println("Toques levantados: $touchUpCount")
 
-        if (outOfOrderAttempts.isNotEmpty())
+        for (connection in connections)
         {
-            println("Tentativas fora de ordem: ${outOfOrderAttempts.size}")
-            detailsOutOfOrder()
+            println("${connection.circleOrigin.text} - ${connection.circleDestination.text}")
+            println("  - Sequência correta: ${connection.isSequenceCorrect}")
+            println("  - Caminho interrompido: ${connection.isPathInterrupted}")
+            println("  - Tempo: ${connection.time} milissegundos")
         }
 
-        for (i in 1 until circleTimes.size) {
-            val timeDiff = circleTimes[i] - circleTimes[i - 1]
-            val secondsDiff = TimeUnit.MILLISECONDS.toSeconds(timeDiff)
-            println("Tempo entre o círculo ${i} e ${i + 1}: ${secondsDiff} segundos")
+        //todo: isolar
+        var i = 1
+        var totalTimeTouchUp = 0L
+        for( time in startTouchUpTimes)
+        {
+            val pauseInterval = startPathTimes[i] - time
+            totalTimeTouchUp += pauseInterval
+            println("Tempo toque levantado ${i}: $pauseInterval")
+            i++
         }
+        println("Tempo total toque levantado: $totalTimeTouchUp")
+
+        isTestFinished = true
     }
 
-    private fun detailsOutOfOrder( )
-    {
-        // Agrupa por círculo e conta as repetições e avanços
-        val groupedCounts = outOfOrderAttempts.groupBy { it.circleIndex }
-            .mapValues { (_, list) ->
-                val repetitions = list.count { it.isRepetition }
-                val advances = list.size - repetitions
-                Pair(repetitions, advances)
-            }
-
-        // Exibe os resultados
-        for ((circleIndex, counts) in groupedCounts) {
-            println("Círculo ${circlesA[circleIndex].text}:")
-            println("  - Repetições: ${counts.first}")
-            println("  - Avanços: ${counts.second}")
-        }
-    }
 }
