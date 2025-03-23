@@ -30,7 +30,7 @@ class InformationActivity : AppCompatActivity() {
         btnBackMain = findViewById(R.id.buttonBackMain)
 
         btnConfirm.setOnClickListener {
-            val intent = Intent(this, TMTAInformation::class.java)
+            val intent = Intent(this, TMTAInformationActivity::class.java)
 
 
             if (patientName.text.toString().isEmpty()) {

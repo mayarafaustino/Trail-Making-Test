@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TMTAInformation">
+    tools:context=".TMTAInformationActivity">
 
     <Button
         android:id="@+id/buttonBackInformation"
@@ -14,7 +14,7 @@
         android:layout_marginStart="36sp"
         android:layout_marginBottom="124sp"
         android:backgroundTint="#CE4336"
-        android:text="Cancelar"
+        android:text="Voltar"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"

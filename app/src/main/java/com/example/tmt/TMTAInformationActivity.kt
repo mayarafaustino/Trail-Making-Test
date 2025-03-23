@@ -1,15 +1,12 @@
 package com.example.tmt
 
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
-class TMTAInformation : AppCompatActivity() {
+class TMTAInformationActivity : AppCompatActivity() {
 
     lateinit var btnBackInformation: Button
     lateinit var btnSampleA: Button
