@@ -1,5 +1,6 @@
 package com.example.tmt
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.Button
@@ -23,6 +24,13 @@ class TMTAInformationActivity : AppCompatActivity() {
         btnBackInformation.setOnClickListener {
 
             finish()
+        }
+
+        btnSampleA.setOnClickListener {
+
+            val intent = Intent(this, TMTBInformationActivity::class.java)
+
+            startActivity(intent)
         }
 
 

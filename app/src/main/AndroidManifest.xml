@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TMT"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityTest"
+            android:exported="false" />
+        <activity
             android:name=".ResultsScreenActivity"
             android:exported="false" />
         <activity

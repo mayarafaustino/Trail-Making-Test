@@ -29,6 +29,13 @@ class TMTBInformationActivity : AppCompatActivity() {
 
         }
 
+        btnSampleB.setOnClickListener {
+
+            val intent = Intent(this, TestCompletedActivity::class.java)
+
+            startActivity(intent)
+        }
+
 
 
     }
