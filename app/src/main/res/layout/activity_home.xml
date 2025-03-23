@@ -13,7 +13,7 @@
         android:layout_width="0sp"
         android:layout_height="518sp"
         android:fontFamily="sans-serif-light"
-        android:text="Trial Making Test"
+        android:text="Trail Making Test"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="130sp"

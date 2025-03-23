@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TMT</string>
-    <string name="about_tmta">Olá! Vou te explicar o que você precisa fazer durante o Trial Making Test A (TMT-A).
+    <string name="about_tmta">Olá! Vou te explicar o que você precisa fazer durante o Trail Making Test A (TMT-A).
         Esse é um teste que nos ajuda a entender como sua mente está funcionando em termos de atenção, concentração e
         rapidez para organizar informações. Não é um teste de certo ou errado, mas sim para avaliar o seu desempenho.</string>
     <string name="about_tmta_part2">Na próxima tela haverão números de 1 a 25 espalhados de forma desorganizada.
@@ -10,7 +10,7 @@
         depois o 2 ao 3, e assim por diante, até o número 25. A ideia é que você faça isso da forma mais rápida possível,
         como no exemplo abaixo. Mas lembre-se, não é um teste de certo ou errado.</string>
 
-    <string name="about_tmtb"> Agora vou te explicar o que você precisa fazer durante o Trial Making Test B (TMT-B).
+    <string name="about_tmtb"> Agora vou te explicar o que você precisa fazer durante o Trail Making Test B (TMT-B).
         Esse é um teste que nos ajuda a entender como sua mente está funcionando em termos de flexibilidade cognitiva,
         atenção, concentração e rapidez em alternar entre diferentes tipos de informações.
         Não é um teste de certo ou errado, mas sim para avaliar o seu desempenho.</string>
