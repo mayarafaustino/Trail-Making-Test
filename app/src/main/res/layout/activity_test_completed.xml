@@ -11,15 +11,14 @@
         android:id="@+id/buttonGoToResults"
         android:layout_width="521sp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="136dp"
         android:fontFamily="sans-serif"
         android:paddingTop="10sp"
         android:paddingBottom="10sp"
         android:text="ver resultado"
-        android:textSize="48sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintHorizontal_bias="0.398"
         app:layout_constraintStart_toEndOf="@+id/guideline10" />
 
     <androidx.constraintlayout.widget.Guideline

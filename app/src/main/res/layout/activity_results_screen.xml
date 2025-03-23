@@ -300,6 +300,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/download_icon" />
 
+            <Button
+                android:id="@+id/buttonBackToHome"
+                android:layout_width="521sp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="136dp"
+                android:fontFamily="sans-serif"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:text="Voltar para o inicio"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="@+id/guideline11" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
