@@ -3,7 +3,7 @@ package com.example.tmt
 import android.graphics.Color
 import android.graphics.Paint
 
-class Circle( val x: Float, val y: Float, val text: String )
+class Circle( val x: Float, val y: Float, val text: String, val ordem: Int )
 {
     val radius = 50f
 
