@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InformationActivity"
+    tools:ignore="HardcodedText"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="259sp"
+        android:layout_height="46sp"
+        android:layout_marginTop="70sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Profissional"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/inputPatientAge" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="638sp"
+        android:layout_height="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/bar" />
+
+    <TextView
+        android:id="@+id/labelPatientIdentifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="212dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Identificador:"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toEndOf="@+id/labelPatientAge"
+        app:layout_constraintTop_toBottomOf="@+id/inputPatientName"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0sp"
+        android:layout_height="121sp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Informações"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="70sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="152sp"
+        android:layout_height="46sp"
+        android:layout_marginTop="8sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Paciente"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Identificador:"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputProfessionalName" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Data"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputProfessionalName" />
+
+    <EditText
+        android:id="@+id/editTextNumber4"
+        android:layout_width="350sp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12sp"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="Digite o identificador (CPF/Matrícula)"
+        android:inputType="number"
+        android:maxLength="11"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/labelProfissionalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Nome do profissional:*"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <TextView
+        android:id="@+id/labelPatientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Nome do paciente:*"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.002"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+    <TextView
+        android:id="@+id/labelPatientAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:fontFamily="sans-serif-light"
+        android:text="Idade:*"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/inputPatientName" />
+
+    <EditText
+        android:id="@+id/inputPatientName"
+        android:layout_width="0sp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="Digite o nome do paciente"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/labelPatientName" />
+
+    <EditText
+        android:id="@+id/inputProfessionalName"
+        android:layout_width="641sp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12sp"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="Digite o nome do paciente"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/labelProfissionalName" />
+
+    <EditText
+        android:id="@+id/inputPatientAge"
+        android:layout_width="wrap_content"
+        android:layout_height="48sp"
+        android:layout_marginTop="12sp"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="Digite a idade"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/inputPatientIdentifier"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/labelPatientAge" />
+
+    <EditText
+        android:id="@+id/inputPatientIdentifier"
+        android:layout_width="350sp"
+        android:layout_height="48sp"
+        android:layout_marginTop="12sp"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="Digite o identificador (CPF/Matrícula)"
+        android:inputType="number"
+        android:maxLength="11"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/labelPatientIdentifier" />
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="251sp"
+        android:layout_height="67sp"
+        android:layout_marginEnd="36sp"
+        android:layout_marginBottom="124sp"
+        android:text="Continuar"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber4"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonBackMain"
+        android:layout_width="251sp"
+        android:layout_height="67sp"
+        android:layout_marginStart="36sp"
+        android:layout_marginEnd="66sp"
+        android:layout_marginBottom="124sp"
+        android:backgroundTint="#CE4336"
+        android:text="Cancelar"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonConfirm"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber4"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="638sp"
+        android:layout_height="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:srcCompat="@drawable/bar" />
+
+    <EditText
+        android:id="@+id/editTextDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="48sp"
+        android:layout_marginTop="12sp"
+        android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+        android:drawablePadding="8dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="Insira a data de hoje"
+        android:inputType="date"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/editTextNumber4"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
