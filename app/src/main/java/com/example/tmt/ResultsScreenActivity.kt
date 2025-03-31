@@ -11,14 +11,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import android.content.DialogInterface
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.widget.Toast
+import androidx.activity.viewModels
 
 class ResultsScreenActivity : AppCompatActivity() {
+    private val sharedViewModel: SharedViewModel by viewModels()
+    private val ScreenCapture = ScreenCapture()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_results_screen)
 
+        val pdfGenerator = PdfGenerator()
 
         val btnToggleA: ImageButton = findViewById(R.id.buttonExpandA)
         val btnToggleB: ImageButton = findViewById(R.id.buttonExpandB)
@@ -54,6 +64,30 @@ class ResultsScreenActivity : AppCompatActivity() {
             }
         }
 
+        //val imageView = findViewById<ImageView>(R.id.image_preview)
+        val btnPDF = findViewById<ImageButton>(R.id.buttonDownload)
+
+        //val base64Image = intent.getStringExtra("imagemBase64")
+        //val bitmap = base64ToBitmap(base64Image)
+        //imageView.setImageBitmap(bitmap)
+        val patientName = sharedViewModel.patientName
+        val patientAge = sharedViewModel.patientAge
+        val patientIdentifier= sharedViewModel.patientIdentifier
+        val professionalName = sharedViewModel.professionalName
+        val professionalIdentifier = sharedViewModel.professionalIdentifier
+        val imageTMTA = sharedViewModel.imageTMTA
+        val imageTMTB = sharedViewModel.imageTMTB
+
+        btnPDF.setOnClickListener {
+
+            val html = pdfGenerator.createHtmlPDF(patientName, patientAge, patientIdentifier, professionalName, professionalIdentifier, imageTMTA, imageTMTB )
+
+
+            pdfGenerator.generatePdf(this, html, patientName, patientIdentifier) { file ->
+                Toast.makeText(this, "PDF salvo em: ${file?.path}", Toast.LENGTH_LONG).show()
+            }
+
+        }
 
         btnBackToHome.setOnClickListener {
             // Criar o AlertDialog
@@ -73,6 +107,19 @@ class ResultsScreenActivity : AppCompatActivity() {
 
             builder.show()
         }
+
+/*
+
+         private val sharedViewModel: SharedViewModel by viewModels()
+        //
+        val bitmap = screenCapture.captureScreen(this)
+
+        //
+        val base64Bitmap = screenCapture.bitmapToBase64(bitmap)
+        sharedViewModel.imageTMTA = base64Bitmap
+        sharedViewModel.imageTMTB = base64Bitmap
+*/
+
 
     }
 
