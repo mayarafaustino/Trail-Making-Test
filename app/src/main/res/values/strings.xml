@@ -1,23 +1,24 @@
 <resources>
     <string name="app_name">TMT</string>
     <string name="about_tmta">Olá! Vou te explicar o que você precisa fazer durante o Trail Making Test A (TMT-A).</string>
-    <string name="about_tmta_part2">Na próxima tela haverão números de 1 a 25 espalhados de forma desorganizada.
-        Seu objetivo é ligar esses números na ordem correta, do número 1 até o número 25.
-        Para fazer isso, você vai usar o seu dedo para traçar uma linha conectando os números.</string>
-    <string name="about_tmta_part3">Quando o teste começar, você deve olhar para os números e começar a ligar o 1 ao 2,
-        depois o 2 ao 3, e assim por diante, até o número 25. A ideia é que você faça isso da forma mais rápida possível.
-        Mas fique tranquilo, não é um teste de certo ou errado, mas sim para avaliar o seu desempenho.</string>
+    <string name="about_tmta_part2">Na próxima tela, você verá números de 1 a 25 distribuídos aleatoriamente.
+        Seu objetivo é conectá-los na ordem correta, começando pelo número 1 e seguindo até o 25.</string>
+    <string name="about_tmta_part3">Para isso, use o dedo para traçar uma linha ligando os números.
+        Assim que o teste começar, procure o número 1 e conecte-o ao 2, depois ao 3, e continue até chegar ao 25.
+        Tente fazer isso o mais rápido possível.
+        Mas não se preocupe! Esse não é um teste de acertos e erros, e sim uma forma de avaliar o seu desempenho.</string>
 
     <string name="about_tmtb"> Agora vou te explicar o que você precisa fazer durante o Trail Making Test B (TMT-B).</string>
 
     <string name="about_tmtb_part2">Na próxima tela, haverão números de 1 a 13 e letras de A a L espalhados de forma desorganizada.
         Seu objetivo é ligar os números e as letras alternadamente, seguindo a ordem correta: 1-A, 2-B, 3-C, e assim por diante,
-        até o número 13 e a letra L. Para fazer isso, você vai usar o seu dedo para traçar uma linha conectando os núm
-        eros e as letras na ordem correta.</string>
+        até o número 13 e a letra L. Para fazer isso, use o dedo para traçar uma linha conectando os núm
+        eros e as letras na ordem correta.
+
+</string>
 
     <string name="about_tmtb_part3"> Quando o teste começar, você deve olhar para os números e as letras e começar a ligar
         o número 1 à letra A, depois o número 2 à letra B, o número 3 à letra C, e assim por diante, até o número 13 e a letra L.
-        A ideia é fazer isso o mais rápido possível. E assim como na etapa anterior, esse também é um teste de avaliação de desempenho.</string>
-
+    Tente fazer isso o mais rápido possível. Assim como na etapa anterior, este também é um teste de avaliação de desempenho, não de certo ou errado.
 
 </resources>
