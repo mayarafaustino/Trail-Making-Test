@@ -10,6 +10,8 @@ class PathManager {
     var currentPath = Path()
     val paths = mutableListOf<Path>()
     val pathPoints = mutableListOf<Pair<Float, Float>>()
+    val pathStartTimes = mutableListOf<Long>()
+    val touchUpList = mutableListOf<TouchUp>()
 
     val pathPaint = Paint().apply {
         color = Color.BLUE
@@ -22,6 +24,7 @@ class PathManager {
         pathPoints.clear()
         pathPoints.add(Pair(x, y))
         isDrawing = true
+        recordStartTime()
     }
 
     fun updatePath(x: Float, y: Float) {
@@ -32,5 +35,21 @@ class PathManager {
     fun finishPath() {
         paths.add(currentPath)
         isDrawing = false
+        recordTouchUp()
+    }
+
+    //Adiciona tempo de início de cada path e fim de cada toque levantado
+    private fun recordStartTime()
+    {
+        val time = System.currentTimeMillis()
+        pathStartTimes.add(time)
+        if(touchUpList.isNotEmpty())
+            touchUpList.last().endTime = time
+
+    }
+
+    private fun recordTouchUp()
+    {
+        touchUpList.add(TouchUp())
     }
 }
