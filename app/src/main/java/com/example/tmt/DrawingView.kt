@@ -8,17 +8,29 @@ import android.view.View
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
 {
+    private var tmtType: TmtType = TmtType.TMT_A
     private val pathManager = PathManager()
     private lateinit var testResults: TestResults
     private lateinit var testManager: TestManager
     private lateinit var circles: List<Circle>
+    private var listener: OnTestFinishedListener? = null
+
+    fun setTmtType(tmtType: TmtType)
+    {
+        this.tmtType = tmtType
+    }
+
+    fun setOnTestFinishedListener(listener: OnTestFinishedListener)
+    {
+        this.listener = listener
+    }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int)
     {
         super.onSizeChanged(w, h, oldw, oldh)
 
         val screen = ScreenSize(w.toFloat(), h.toFloat())
-        testManager = TestManager( TmtType.TMT_B_SAMPLE, screen )
+        testManager = TestManager( tmtType, screen )
         circles = testManager.getCircles()
     }
 
@@ -69,30 +81,19 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
                     if( testManager.checkEndTest() )
                     {
                         testResults = testManager.createResults(pathManager)
-                        exibirResultados()
+                        testResults.exibirResultados()
+                        listener?.onTestFinished(testResults)
                     }
                     invalidate()
                 }
             }
 
             MotionEvent.ACTION_UP -> {
-                pathManager.finishPath()
+                if(!testManager.isTestFinished())
+                    pathManager.finishPath()
             }
         }
         return true
-    }
-
-    //temporario
-    fun exibirResultados()
-    {
-        println(testResults.getTestType())
-        println(testResults.getFormattedTotalTime())
-        println(testResults.getTouchUpCount())
-        println(testResults.getTotalTouchUpTime())
-        println(testResults.getCorrectConnectionsCount())
-        println(testResults.getIncorrectConnectionsCount())
-        println(testResults.getCorrectConnectionsDetails())
-        println(testResults.getIncorrectConnectionsDetails())
     }
 
 }

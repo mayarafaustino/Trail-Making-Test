@@ -134,6 +134,9 @@ class TestManager(
 
     fun createResults(pathManager: PathManager): TestResults
     {
+        if (tmtType.isSample())
+            return TestResults.EMPTY
+
         val totalTime = calculateTotalTime(pathManager)
         return TestResults(tmtType, totalTime, connections, pathManager.touchUpList, circles)
     }

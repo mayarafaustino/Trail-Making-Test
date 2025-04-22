@@ -12,7 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 
 
 class InformationActivity : AppCompatActivity() {
-    private val sharedViewModel: SharedViewModel by viewModels()
+
+
     lateinit var patientName : EditText
     lateinit var patientAge: EditText
     lateinit var patientIdentifier: EditText
@@ -30,6 +31,8 @@ class InformationActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_information)
+
+
 
         patientName = findViewById(R.id.inputPatientName)
         patientAge = findViewById(R.id.inputPatientAge)
@@ -51,11 +54,11 @@ class InformationActivity : AppCompatActivity() {
                 professionalName.error = "Nome do aplicador é obrigatório"
             } else {
 
-                sharedViewModel.patientName = patientName.text.toString()
-                sharedViewModel.patientAge = patientAge.text.toString().toIntOrNull()
-                sharedViewModel.patientIdentifier = patientIdentifier.text.toString()
-                sharedViewModel.professionalName = professionalName.text.toString()
-                sharedViewModel.professionalIdentifier = professionalIdentifier.text.toString()
+                TestSession.patientName = patientName.text.toString()
+                TestSession.patientAge = patientAge.text.toString().toIntOrNull()
+                TestSession.patientIdentifier = patientIdentifier.text.toString()
+                TestSession.professionalName = professionalName.text.toString()
+                TestSession.professionalIdentifier = professionalIdentifier.text.toString()
 
                 startActivity(intent)
             }

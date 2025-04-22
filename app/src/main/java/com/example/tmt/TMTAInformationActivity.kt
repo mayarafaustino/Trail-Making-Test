@@ -28,8 +28,8 @@ class TMTAInformationActivity : AppCompatActivity() {
 
         btnSampleA.setOnClickListener {
 
-            val intent = Intent(this, TMTBInformationActivity::class.java)
-
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("TMT_TYPE", TmtType.TMT_A_SAMPLE.name)
             startActivity(intent)
         }
 

@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         btnEnter.setOnClickListener {
 
             val intent = Intent(this, InformationActivity::class.java)
-
+            TestSession.clear()
             startActivity(intent)
         }
 

@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">TMT</string>
+
     <string name="about_tmta">Olá! Vou te explicar o que você precisa fazer durante o Trail Making Test A (TMT-A).</string>
+
     <string name="about_tmta_part2">Na próxima tela, você verá números de 1 a 25 distribuídos aleatoriamente.
         Seu objetivo é conectá-los na ordem correta, começando pelo número 1 e seguindo até o 25.</string>
+
     <string name="about_tmta_part3">Para isso, use o dedo para traçar uma linha ligando os números.
         Assim que o teste começar, procure o número 1 e conecte-o ao 2, depois ao 3, e continue até chegar ao 25.
         Tente fazer isso o mais rápido possível.
@@ -13,12 +16,16 @@
     <string name="about_tmtb_part2">Na próxima tela, haverão números de 1 a 13 e letras de A a L espalhados de forma desorganizada.
         Seu objetivo é ligar os números e as letras alternadamente, seguindo a ordem correta: 1-A, 2-B, 3-C, e assim por diante,
         até o número 13 e a letra L. Para fazer isso, use o dedo para traçar uma linha conectando os núm
-        eros e as letras na ordem correta.
-
-</string>
+        eros e as letras na ordem correta.</string>
 
     <string name="about_tmtb_part3"> Quando o teste começar, você deve olhar para os números e as letras e começar a ligar
         o número 1 à letra A, depois o número 2 à letra B, o número 3 à letra C, e assim por diante, até o número 13 e a letra L.
         Tente fazer isso o mais rápido possível. Assim como na etapa anterior, este também é um teste de avaliação de desempenho, não de certo ou errado.</string>
+
+    <string name="start_test">Iniciar Teste</string>
+    <string name="go_to_next_tmt">Próxima etapa</string>
+    <string name="next">Continuar</string>
+    <string name="about_tmt_a">Sobre o TMT-A</string>
+    <string name="start_sample">Iniciar exemplo</string>
 
 </resources>

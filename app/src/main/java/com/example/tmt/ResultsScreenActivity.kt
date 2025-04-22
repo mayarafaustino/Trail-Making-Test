@@ -14,11 +14,14 @@ import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 
-class ResultsScreenActivity : AppCompatActivity() {
-    private val sharedViewModel: SharedViewModel by viewModels()
+class ResultsScreenActivity : AppCompatActivity()
+{
+
     private val ScreenCapture = ScreenCapture()
 
 
@@ -29,6 +32,22 @@ class ResultsScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_results_screen)
 
         val pdfGenerator = PdfGenerator()
+
+        // Referência para os TextViews do TMT-A
+        val textTempoTotalA = findViewById<TextView>(R.id.textView19)
+        val textTempoToqueLevantadoA = findViewById<TextView>(R.id.textView20)
+        val textToquesLevantadosA = findViewById<TextView>(R.id.textViewTMTATouches)
+        val textConexoesCorretasA = findViewById<TextView>(R.id.textViewTMTAConexoesCorretas)
+        val textConexoesIncorretasA = findViewById<TextView>(R.id.textViewTMTAConexoesIncorretas)
+        val textDetalheTmtA = findViewById<TextView>(R.id.textView55)
+
+        // Referência para os TextViews do TMT-B
+        val textTempoTotalB = findViewById<TextView>(R.id.textView23)
+        val textTempoToqueLevantadoB = findViewById<TextView>(R.id.textView21)
+        val textToquesLevantadosB = findViewById<TextView>(R.id.textViewTMTBTouches)
+        val textConexoesCorretasB = findViewById<TextView>(R.id.textViewTMTBConexoesCorretas)
+        val textConexoesIncorretasB = findViewById<TextView>(R.id.textViewTMTBConexoesIncorretas)
+        val textDetalheTmtB = findViewById<TextView>(R.id.textView56)
 
         val btnToggleA: ImageButton = findViewById(R.id.buttonExpandA)
         val btnToggleB: ImageButton = findViewById(R.id.buttonExpandB)
@@ -70,13 +89,37 @@ class ResultsScreenActivity : AppCompatActivity() {
         //val base64Image = intent.getStringExtra("imagemBase64")
         //val bitmap = base64ToBitmap(base64Image)
         //imageView.setImageBitmap(bitmap)
-        val patientName = sharedViewModel.patientName
-        val patientAge = sharedViewModel.patientAge
-        val patientIdentifier= sharedViewModel.patientIdentifier
-        val professionalName = sharedViewModel.professionalName
-        val professionalIdentifier = sharedViewModel.professionalIdentifier
-        val imageTMTA = sharedViewModel.imageTMTA
-        val imageTMTB = sharedViewModel.imageTMTB
+        val patientName            = TestSession.patientName
+        val patientAge             = TestSession.patientAge
+        val patientIdentifier      = TestSession.patientIdentifier
+        val professionalName       = TestSession.professionalName
+        val professionalIdentifier = TestSession.professionalIdentifier
+        val imageTMTA              = TestSession.imageTMTA
+        val imageTMTB              = TestSession.imageTMTB
+
+
+        TestSession.results.forEach { result ->
+            if (result.getTestType() == TmtType.TMT_A)
+            {
+                // Preencher dados do TMT-A
+                textTempoTotalA.text          = result.getFormattedTotalTime()
+                textTempoToqueLevantadoA.text = result.getTotalTouchUpTime()
+                textToquesLevantadosA.text    = result.getTouchUpCount()
+                textConexoesCorretasA.text    = result.getCorrectConnectionsCount()
+                textConexoesIncorretasA.text  = result.getIncorrectConnectionsCount()
+                textDetalheTmtA.text          = result.getDetails()
+            }
+            else if (result.getTestType() == TmtType.TMT_B)
+            {
+                // Preencher dados do TMT-B
+                textTempoTotalB.text          = result.getFormattedTotalTime()
+                textTempoToqueLevantadoB.text = result.getTotalTouchUpTime()
+                textToquesLevantadosB.text    = result.getTouchUpCount()
+                textConexoesCorretasB.text    = result.getCorrectConnectionsCount()
+                textConexoesIncorretasB.text  = result.getIncorrectConnectionsCount()
+                textDetalheTmtB.text          = result.getDetails()
+            }
+        }
 
         btnPDF.setOnClickListener {
 

@@ -15,7 +15,7 @@ object CircleFactory
     private fun criarTmtA(w: Float, h: Float): List<Circle>
     {
         return listOf(
-            Circle(0.60f * w, 0.51f * h, "1", 0),
+            Circle(0.63f * w, 0.51f * h, "1", 0),
             Circle(0.52f * w, 0.59f * h, "2", 1),
             Circle(0.76f * w, 0.65f * h, "3", 2),
             Circle(0.67f * w, 0.33f * h, "4", 3),
@@ -51,7 +51,7 @@ object CircleFactory
             Circle(0.32f * w, 0.72f * h, "2", 2),
             Circle(0.44f * w, 0.23f * h, "B", 3),
             Circle(0.44f * w, 0.33f * h, "3", 4),
-            Circle(0.86f * w, 0.48f * h, "C", 5),
+            Circle(0.68f * w, 0.48f * h, "C", 5),
             Circle(0.57f * w, 0.20f * h, "4", 6),
             Circle(0.79f * w, 0.17f * h, "D", 7),
             Circle(0.83f * w, 0.42f * h, "5", 8),
@@ -62,15 +62,15 @@ object CircleFactory
             Circle(0.21f * w, 0.58f * h, "G", 13),
             Circle(0.20f * w, 0.17f * h, "8", 14),
             Circle(0.22f * w, 0.43f * h, "H", 15),
-            Circle(0.34f * w, 0.15f * h, "9", 16),
-            Circle(0.67f * w, 0.16f * h, "I", 17),
+            Circle(0.34f * w, 0.13f * h, "9", 16),
+            Circle(0.67f * w, 0.15f * h, "I", 17),
             Circle(0.87f * w, 0.10f * h, "10", 18),
             Circle(0.87f * w, 0.62f * h, "J", 19),
             Circle(0.88f * w, 0.88f * h, "11", 20),
             Circle(0.14f * w, 0.88f * h, "K", 21),
             Circle(0.15f * w, 0.50f * h, "12", 22),
             Circle(0.16f * w, 0.76f * h, "L", 23),
-            Circle(0.14f * w, 0.11f * h, "13", 24)
+            Circle(0.11f * w, 0.09f * h, "13", 24)
         )
     }
 
