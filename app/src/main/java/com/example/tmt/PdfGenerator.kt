@@ -4,6 +4,9 @@ import android.os.Environment
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import java.io.File
+import java.util.Calendar
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class PdfGenerator {
 
@@ -24,7 +27,9 @@ class PdfGenerator {
     }
     //fun createHtmlPDF(imageTMTABase64: String, imageTMTBBase64: String, itens: List<String>): String {
     fun createHtmlPDF(patientName: String? = null, patientAge: Int? = null, patientIdentifier: String? = null, professionalName: String? = null, professionalIdentifier: String? = null, imageTMTABase64: String? = null, imageTMTBBase64: String? = null ): String {
-
+        val calendar = Calendar.getInstance()
+        val changesFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val date = changesFormat.format(calendar.time)
         /*val paragrafosHtml = itens.joinToString("\n") { item ->
             """<p>$item</p>"""
         }*/
@@ -55,6 +60,7 @@ class PdfGenerator {
                     <p class="textonormal" id="nomedopaciente">Paciente: $patientName - $patientAge anos</p>
                     <p class="textonormal" id="identificador">Identificador:$patientIdentifier</p>
                     <p class="textonormal" id="nomedoprofissional">Profissional: $professionalName - $professionalIdentifier</p>
+                    <p class="textonormal" id="data"> Data: $date </p>
                 </div>
                 <div class="resultadogeral">
                     <h2 class="titulo">Resultado geral</h2>

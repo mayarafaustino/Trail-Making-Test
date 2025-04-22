@@ -220,20 +220,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputProfessionalName" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24sp"
-        android:fontFamily="sans-serif-light"
-        android:text="Data"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.725"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputProfessionalName" />
-
     <EditText
         android:id="@+id/inputProfessionalIdentifier"
         android:layout_width="350sp"
@@ -247,23 +233,6 @@
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <EditText
-        android:id="@+id/editTextDate2"
-        android:layout_width="wrap_content"
-        android:layout_height="48sp"
-        android:layout_marginTop="12sp"
-        android:drawableLeft="@android:drawable/ic_menu_my_calendar"
-        android:drawablePadding="8dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
-        android:hint="Insira a data de hoje"
-        android:inputType="date"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/inputProfessionalIdentifier"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
         android:id="@+id/buttonConfirm"
