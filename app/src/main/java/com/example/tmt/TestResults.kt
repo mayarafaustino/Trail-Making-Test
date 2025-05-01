@@ -1,5 +1,8 @@
 package com.example.tmt
 
+import java.util.Locale
+import java.util.Locale.setDefault
+
 class TestResults(
     private val tmtType: TmtType,
     private val totalTime: Long,
@@ -10,6 +13,10 @@ class TestResults(
 
     companion object {
         val EMPTY = TestResults(TmtType.TMT_A_SAMPLE, 0, emptyList(), emptyList(), emptyList())
+        init {
+                setDefault(Locale("pt", "BR"))
+            }
+
     }
 
     fun getTestType(): TmtType = tmtType

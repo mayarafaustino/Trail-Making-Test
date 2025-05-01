@@ -12,6 +12,9 @@ class MainActivity : AppCompatActivity(), OnTestFinishedListener
     private lateinit var drawingView: DrawingView
     private lateinit var btnNext: Button
     private lateinit var footerArea: LinearLayout
+    private val screenCapture = ScreenCapture()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +48,26 @@ class MainActivity : AppCompatActivity(), OnTestFinishedListener
             }
             else if (tmtType == TmtType.TMT_A)
             {
+                setFooterAreaVisibility()
+                val bitmap = screenCapture.captureScreen(this) // Captura a tela
+                val base64Image = screenCapture.bitmapToBase64(bitmap) // Converte para Base64
+                TestSession.imageTMTA = base64Image
+
+
                 val intent = Intent(this, TMTBInformationActivity::class.java)
+
+
+
                 startActivity(intent)
                 finish()
             }
             else if (tmtType == TmtType.TMT_B)
             {
+                setFooterAreaVisibility()
+                val bitmap = screenCapture.captureScreen(this) // Captura a tela
+                val base64Image = screenCapture.bitmapToBase64(bitmap) // Converte para Base64
+                TestSession.imageTMTB = base64Image
+
                 val intent = Intent(this, TestCompletedActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -99,5 +116,18 @@ class MainActivity : AppCompatActivity(), OnTestFinishedListener
     }
 
 }
+
+
+/*
+
+         private val sharedViewModel: SharedViewModel by viewModels()
+        //
+        val bitmap = screenCapture.captureScreen(this)
+
+        //
+        val base64Bitmap = screenCapture.bitmapToBase64(bitmap)
+        sharedViewModel.imageTMTA = base64Bitmap
+        sharedViewModel.imageTMTB = base64Bitmap
+*/
 
 

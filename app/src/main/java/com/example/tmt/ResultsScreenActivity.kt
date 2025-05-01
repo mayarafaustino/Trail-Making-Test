@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 class ResultsScreenActivity : AppCompatActivity()
 {
 
-    private val ScreenCapture = ScreenCapture()
+    //private val ScreenCapture = ScreenCapture()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,7 +123,8 @@ class ResultsScreenActivity : AppCompatActivity()
 
         btnPDF.setOnClickListener {
 
-            val html = pdfGenerator.createHtmlPDF(patientName, patientAge, patientIdentifier, professionalName, professionalIdentifier, imageTMTA, imageTMTB )
+            //val html = pdfGenerator.createHtmlPDF(TestSession.patientName, TestSession.patientAge, TestSession.patientIdentifier, TestSession.professionalName, TestSession.professionalIdentifier, TestSession.imageTMTA, TestSession.imageTMTB)
+            val html = pdfGenerator.createHtmlPDF()
 
 
             pdfGenerator.generatePdf(this, html, patientName, patientIdentifier) { file ->
