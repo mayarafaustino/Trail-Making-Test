@@ -31,6 +31,9 @@ class PdfGenerator {
                     ?.print("$patientName - $patientIdentifier", printAdapter, null)
                 onFinish(file)
             }
+
+
+
         }
     }
 
@@ -192,52 +195,38 @@ class PdfGenerator {
 
 
 
-        /*val paragrafosHtml = itens.joinToString("\n") { item ->
-            """<p>$item</p>"""
-
-
-            <p style="font-weight: 700;">Tempo total : 300s</p>
-                        <p >- Tempo líquido: 200s </p>
-                        <p >- Tempo em pausa: 100s</p>
-                        <br><br>
-                        <p style="font-weight: 700;">Números:</p>
-                        <p >- Conexões corretas: </p>
-                        <p >- Conexões erradas: </p>
-        }*/
-
-
-
 
         return """
             <!DOCTYPE html>
             <html>
             <head>
-                <style>
+                <style>       
                     @page { size: A4; margin:0; margin-top:20mm; margin-bottom: 20mm; }
                     html, body { width: 100%; height: 100%; margin: 0; padding: 0; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;}
-                    .capa,.resultadogeral,.tmtimagem,.tmtdados{ width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
+                    .capa,.resultadogeral,.tmtimagem,.tmtdados{ width: 210mm; min-height: 257mm; display: flex; justify-content: center; align-items: center; height: auto; }
+                    
                     .full-image { max-width: 100%; max-height: 100vh; object-fit: contain; }
-                    .capa{flex-direction: column; width: 210mm; /* Largura A4 */height: 297mm;}
+                    .capa{display: flex;flex-direction: column;align-items: center;justify-content: center;box-sizing: border-box; width: 210mm; height: 257mm;}
                     h1{font-size: 160px; text-align: center; margin-top: 0;}
                     .textonormal{margin-bottom: 0; align-self:start; margin-left: 10%; font-size: 20px;}
-                    .resultadogeral,.tmtdados{justify-content: start; width: 210mm; ;flex-direction: column;page-break-after: always; break-after: page; margin-bottom: 20mm; min-height: 297mm}
+                    .resultadogeral,.tmtdados{justify-content: start; width: 210mm; flex-direction: column; margin-bottom: 20mm; }
                     h2{font-size: 70px; margin-top: 8%;margin-bottom: 4%;}
-                    hr{border-radius: 2px;; background-color:#05A483 ; width: 166mm; margin:0px; margin-bottom: 4%; height: 8px}
+                    hr{border-radius: 2px; background-color:#05A483 ; width: 166mm; margin:0px; margin-bottom: 4%; height: 8px}
                     h3{margin: 0; font-size: 30px;}
                     p{font-size: 20px; margin: 0;}
-                   
-                    
+                    .resultadogeral{background-color:pink; height: 257mm;}
+                    .capa{background-color:green;height: 257mm;}
                 </style>
             </head>
             <body>
-                <div class="capa">
+                <div class="pagina capa">
                     <h1>Trail<br/>Making<br/>Test<br/></h1>
                     <p class="textonormal" id="nomedopaciente">Paciente: ${TestSession.patientName} - ${TestSession.patientAge} anos</p>
                     <p class="textonormal" id="identificador">Identificador: ${TestSession.patientIdentifier}</p>
                     <p class="textonormal" id="nomedoprofissional">Profissional: ${TestSession.professionalName} - ${TestSession.professionalIdentifier}</p>
                     <p class="textonormal" id="data"> Data: $date </p>
                 </div>
-                <div class="resultadogeral">
+                <div class="pagina resultadogeral">
                     <h2 class="titulo">Resultado geral</h2>
                     <div>
                         <h3>Tempos</h3>
@@ -249,28 +238,17 @@ class PdfGenerator {
                         <h3>Métricas</h3>
                         <hr>
                         <p style="font-weight: 700;"> Conexões e Interrupções:</p>
-                        <p >- Conexões corretas:${
-                            if(correctConnections["Total"] != 0)
-                            {
-                                correctConnections["Total"]} else {"Nenhuma conexão correta registrada."}}</p>
-                        <p >- Conexões erradas: ${
-                            if(wrongConnections["Total"] != 0){
-                                wrongConnections["Total"]} else {"Nenhuma conexão incorreta registrada."}}</p>
+                        <p >- Conexões corretas:${if(correctConnections["Total"] != 0){correctConnections["Total"]} else {"Nenhuma conexão correta registrada."}}</p>
+                        <p >- Conexões erradas: ${if(wrongConnections["Total"] != 0){wrongConnections["Total"]} else {"Nenhuma conexão incorreta registrada."}}</p>
                                                   
                         <p >- Interrupções(Ausência de toque): ${countTouchUp["Total"]}</p>
-                        <br><br>
-                        <p style="font-weight: 700;"> Outras informações:</p>
-                        <p>- Diferença (TMT-B - TMT-A):${"%.3f".format(timeDif / 1000) }</p>
-                        <p>- Razão (TMT-B / TMT-A):${"%.3f".format(ratio / 1000)}</p>
-                        <p>- Pontuação de Interferência( (TMT-B - TMT-A) / TMT-A): ${"%.3f".format(interferenceScore/ 1000)} </p>
-                        
-                        
+
                     </div>
                 </div>
-                <div class="tmtimagem">
+                <div class="pagina tmtimagem">
                     <img src="data:image/png;base64,${TestSession.imageTMTA}" class="full-image" />
                 </div>
-                <div class="tmtdados">
+                <div class="pagina tmtdados">
                     <h2 class="titulo">Resultados TMT-A</h2>
                     <div>
                         <h3>Tempos</h3>
@@ -285,16 +263,16 @@ class PdfGenerator {
                         <p style="font-weight: 700;"> Conexões e Interrupções:</p>
                         <p>- Conexões corretas: ${
 
-                            if(correctConnections["TestA"] != 0)
-                            {
-                                "${correctConnections["TestA"]} / $expectedValueA "} else {"Nenhuma conexão correta registrada."}}
+            if(correctConnections["TestA"] != 0)
+            {
+                "${correctConnections["TestA"]} / $expectedValueA "} else {"Nenhuma conexão correta registrada."}}
                             
                         </p>
                            
                         <p>- Conexões erradas: ${
-                            if(wrongConnections["TestA"] != 0)
-                            {
-                                wrongConnections["TestA"]} else {"Nenhuma conexão incorreta registrada."}}
+            if(wrongConnections["TestA"] != 0)
+            {
+                wrongConnections["TestA"]} else {"Nenhuma conexão incorreta registrada."}}
                             
                         </p>
                         <p >- Interrupções(Ausência de toque): ${countTouchUp["TestA"]}</p>
@@ -308,10 +286,10 @@ class PdfGenerator {
 
                     </div>
                 </div>
-                <div class="tmtimagem">
+                <div class="pagina tmtimagem">
                     <img src="data:image/png;base64,${TestSession.imageTMTB}" class="full-image" />
                 </div>
-                <div class="tmtdados">
+                <div class="pagina tmtdados">
                     <h2 class="titulo">Resultados TMT-B</h2>
                     <div>
                         <h3>Tempos</h3>
@@ -325,12 +303,12 @@ class PdfGenerator {
                         <h3> Métricas</h3>
                         <hr>
                         <p >- Conexões corretas:${if(correctConnections["TestB"]!=0)
-                        {
-                                "${correctConnections["TestB"]} / $expectedValueB "} else {"Nenhuma conexão correta registrada."}}
+        {
+            "${correctConnections["TestB"]} / $expectedValueB "} else {"Nenhuma conexão correta registrada."}}</p>
 
                         <p >- Conexões erradas: ${
-                            if (wrongConnections["TestB"] != 0) {
-                                wrongConnections["TestB"]} else {"Nenhuma conexão incorreta registrada."}}</p>
+            if (wrongConnections["TestB"] != 0) {
+                wrongConnections["TestB"]} else {"Nenhuma conexão incorreta registrada."}}</p>
                         <p >- Interrupções(Ausência de toque): ${countTouchUp["TestB"]}</p>
                          <br><br>
                         
@@ -343,4 +321,21 @@ class PdfGenerator {
             </html>
         """.trimIndent()
     }
+
+/*    fun createHtmlPDF(): String {
+        return """
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>       
+                    p{font-size: 20px; margin: 0;}
+                </style>
+            </head>
+            <body>
+                <p> Teste PDF </p>
+            </body>
+            </html>
+        """.trimIndent()
+    }*/
+
 }
