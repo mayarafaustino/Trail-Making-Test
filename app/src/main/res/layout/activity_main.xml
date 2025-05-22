@@ -13,7 +13,7 @@
 
     <!-- Área com fundo blur e botão fixo no fundo -->
 
-    <com.example.tmt.DrawingView
+    <com.example.tmt.view.DrawingView
         android:id="@+id/drawing_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

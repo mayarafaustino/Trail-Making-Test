@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.controller
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tmt.R
+import com.example.tmt.model.TmtType
 
 class TMTAInformationActivity : AppCompatActivity() {
 

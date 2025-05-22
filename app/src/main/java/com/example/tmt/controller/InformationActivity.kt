@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.controller
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.example.tmt.R
+import com.example.tmt.model.TestSession
 
 
 class InformationActivity : AppCompatActivity() {

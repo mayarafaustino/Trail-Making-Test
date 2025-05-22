@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.controller
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -6,26 +6,27 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.tmt.R
+import com.example.tmt.model.TestSession
 
-class TestCompletedActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
+
+    lateinit var btnEnter : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-        setContentView(R.layout.activity_test_completed)
+        setContentView(R.layout.activity_home)
 
-        val btnResult: Button = findViewById(R.id.buttonGoToResults)
+        btnEnter = findViewById(R.id.btn_home)
 
-        btnResult.setOnClickListener {
+        btnEnter.setOnClickListener {
 
-            val intent = Intent(this, ResultsScreenActivity::class.java)
-
+            val intent = Intent(this, InformationActivity::class.java)
+            TestSession.clear()
             startActivity(intent)
         }
-
 
     }
 }

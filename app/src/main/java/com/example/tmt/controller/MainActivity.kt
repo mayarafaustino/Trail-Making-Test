@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.controller
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tmt.model.OnTestFinishedListener
+import com.example.tmt.R
+import com.example.tmt.model.ScreenCapture
+import com.example.tmt.model.TestResults
+import com.example.tmt.model.TestSession
+import com.example.tmt.model.TmtType
+import com.example.tmt.view.DrawingView
 
 class MainActivity : AppCompatActivity(), OnTestFinishedListener
 {

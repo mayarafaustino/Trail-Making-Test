@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.model
 import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

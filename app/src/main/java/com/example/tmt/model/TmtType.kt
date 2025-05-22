@@ -1,11 +1,11 @@
-package com.example.tmt
+package com.example.tmt.model
 
-enum class TmtType()
+enum class TmtType(val maxDurationSeconds: Int)
 {
-    TMT_A,
-    TMT_B,
-    TMT_A_SAMPLE,
-    TMT_B_SAMPLE;
+    TMT_A(150),
+    TMT_B(300),
+    TMT_A_SAMPLE(300),
+    TMT_B_SAMPLE(300);
 
     fun isSample(): Boolean
     {

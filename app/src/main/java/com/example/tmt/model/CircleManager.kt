@@ -1,8 +1,9 @@
-package com.example.tmt
+package com.example.tmt.model
 
 class CircleManager( private val screenWidth: Float,
                      private val screenHeight: Float,
-                     private val tmtType: TmtType)
+                     private val tmtType: TmtType
+)
 {
 
     private val circles = CircleFactory.criarCirculos(tmtType, screenWidth, screenHeight)

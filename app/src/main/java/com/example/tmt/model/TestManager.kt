@@ -1,10 +1,11 @@
-package com.example.tmt
+package com.example.tmt.model
 
 import kotlin.math.sqrt
 
 class TestManager(
     private val tmtType: TmtType,
-    screen : ScreenSize )
+    screen : ScreenSize
+)
 {
     private val circles = CircleManager(screen.screenWidth, screen.screenHeight, tmtType).getCircles()
     private val circleTimes = mutableListOf<Long>()
@@ -13,6 +14,7 @@ class TestManager(
     private var lastCircleTouchedIndex = -1
     private var leftTheLastCircle = false
     private var isTestFinished = false
+    private var isMaxTimeExceeded = false
 
     fun getCircles(): List<Circle> = circles
 
@@ -20,8 +22,13 @@ class TestManager(
 
     fun checkConnection(pathManager: PathManager)
     {
-        val currentCircleIndex = verifyCurrentCircleIndex(pathManager)
+        if( isMaxTimeExceeded( pathManager.pathStartTimes.first()) )
+        {
+            isMaxTimeExceeded = true
+            return
+        }
 
+        val currentCircleIndex = verifyCurrentCircleIndex(pathManager)
         if( currentCircleIndex == -1 )
             return
 
@@ -56,13 +63,13 @@ class TestManager(
         return currentCircleIndex
     }
 
-    private fun pointIsWithinCircle( point: Pair<Float, Float>, circle: Circle ): Boolean
+    private fun pointIsWithinCircle( point: Pair<Float, Float>, circle: Circle): Boolean
     {
         val distance = calculateDistance(point, circle)
         return distance <= circle.radius
     }
 
-    private fun calculateDistance( point: Pair<Float, Float>, circle: Circle ): Float
+    private fun calculateDistance( point: Pair<Float, Float>, circle: Circle): Float
     {
         return sqrt((point.first - circle.x) * (point.first - circle.x) +
                 (point.second - circle.y) * (point.second - circle.y))
@@ -116,6 +123,12 @@ class TestManager(
 
     fun checkEndTest(): Boolean
     {
+        if( isMaxTimeExceeded )
+        {
+            isTestFinished = true
+            return isTestFinished
+        }
+
         if( connections.isEmpty())
             return false
 
@@ -137,8 +150,9 @@ class TestManager(
         if (tmtType.isSample())
             return TestResults.EMPTY
 
-        val totalTime = calculateTotalTime(pathManager)
-        return TestResults(tmtType, totalTime, connections, pathManager.touchUpList, circles)
+        val maxDurationMillis = tmtType.maxDurationSeconds * 1000L
+        val totalTime = if (isMaxTimeExceeded) maxDurationMillis else calculateTotalTime(pathManager)
+        return TestResults(tmtType, totalTime, connections, pathManager.liftList, circles)
     }
 
     private fun calculateTotalTime(pathManager: PathManager): Long
@@ -148,4 +162,13 @@ class TestManager(
         return totalTime
     }
 
+    private fun isMaxTimeExceeded(startTimeMillis: Long): Boolean
+    {
+        if(tmtType.isSample())
+            return false
+
+        val elapsed = System.currentTimeMillis() - startTimeMillis
+        val maxDurationMillis = tmtType.maxDurationSeconds * 1000
+        return elapsed >= maxDurationMillis
+    }
 }
