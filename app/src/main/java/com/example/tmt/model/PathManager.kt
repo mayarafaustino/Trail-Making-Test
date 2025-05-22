@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.model
 
 import android.graphics.Color
 import android.graphics.Paint
@@ -11,7 +11,7 @@ class PathManager {
     val paths = mutableListOf<Path>()
     val pathPoints = mutableListOf<Pair<Float, Float>>()
     val pathStartTimes = mutableListOf<Long>()
-    val touchUpList = mutableListOf<TouchUp>()
+    val liftList = mutableListOf<Lift>()
 
     val pathPaint = Paint().apply {
         color = Color.BLUE
@@ -35,7 +35,7 @@ class PathManager {
     fun finishPath() {
         paths.add(currentPath)
         isDrawing = false
-        recordTouchUp()
+        recordLift()
     }
 
     //Adiciona tempo de início de cada path e fim de cada toque levantado
@@ -43,13 +43,13 @@ class PathManager {
     {
         val time = System.currentTimeMillis()
         pathStartTimes.add(time)
-        if(touchUpList.isNotEmpty())
-            touchUpList.last().endTime = time
+        if(liftList.isNotEmpty())
+            liftList.last().endTime = time
 
     }
 
-    private fun recordTouchUp()
+    private fun recordLift()
     {
-        touchUpList.add(TouchUp())
+        liftList.add(Lift())
     }
 }

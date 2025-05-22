@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.model
 
 object TestSession
 {

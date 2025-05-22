@@ -1,6 +1,6 @@
-package com.example.tmt
+package com.example.tmt.model
 
-class TouchUp ()
+class Lift ()
 {
 
     val startTime = System.currentTimeMillis()

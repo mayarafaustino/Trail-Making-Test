@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.controller
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -10,14 +10,12 @@ import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
-import android.content.DialogInterface
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Base64
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
+import com.example.tmt.R
+import com.example.tmt.model.TestSession
+import com.example.tmt.model.TmtType
+import com.example.tmt.model.PdfGenerator
 
 class ResultsScreenActivity : AppCompatActivity()
 {
@@ -35,6 +33,7 @@ class ResultsScreenActivity : AppCompatActivity()
 
         // Referência para os TextViews do TMT-A
         val textTempoTotalA = findViewById<TextView>(R.id.textView19)
+        val textTimeWithoutLiftsA = findViewById<TextView>(R.id.textViewTimeWithoutLiftsTMTA)
         val textTempoToqueLevantadoA = findViewById<TextView>(R.id.textView20)
         val textToquesLevantadosA = findViewById<TextView>(R.id.textViewTMTATouches)
         val textConexoesCorretasA = findViewById<TextView>(R.id.textViewTMTAConexoesCorretas)
@@ -43,6 +42,7 @@ class ResultsScreenActivity : AppCompatActivity()
 
         // Referência para os TextViews do TMT-B
         val textTempoTotalB = findViewById<TextView>(R.id.textView23)
+        val textTimeWithoutLiftsB = findViewById<TextView>(R.id.textViewTimeWithoutLiftsTMTB)
         val textTempoToqueLevantadoB = findViewById<TextView>(R.id.textView21)
         val textToquesLevantadosB = findViewById<TextView>(R.id.textViewTMTBTouches)
         val textConexoesCorretasB = findViewById<TextView>(R.id.textViewTMTBConexoesCorretas)
@@ -103,8 +103,9 @@ class ResultsScreenActivity : AppCompatActivity()
             {
                 // Preencher dados do TMT-A
                 textTempoTotalA.text          = result.getFormattedTotalTime()
-                textTempoToqueLevantadoA.text = result.getTotalTouchUpTime()
-                textToquesLevantadosA.text    = result.getTouchUpCount()
+                textTimeWithoutLiftsA.text    = result.getTotalTimeWithoutLifts()
+                textTempoToqueLevantadoA.text = result.getLiftsTotalTime()
+                textToquesLevantadosA.text    = result.getLiftsCount()
                 textConexoesCorretasA.text    = result.getCorrectConnectionsCount()
                 textConexoesIncorretasA.text  = result.getIncorrectConnectionsCount()
                 textDetalheTmtA.text          = result.getDetails()
@@ -113,8 +114,9 @@ class ResultsScreenActivity : AppCompatActivity()
             {
                 // Preencher dados do TMT-B
                 textTempoTotalB.text          = result.getFormattedTotalTime()
-                textTempoToqueLevantadoB.text = result.getTotalTouchUpTime()
-                textToquesLevantadosB.text    = result.getTouchUpCount()
+                textTimeWithoutLiftsB.text    = result.getTotalTimeWithoutLifts()
+                textTempoToqueLevantadoB.text = result.getLiftsTotalTime()
+                textToquesLevantadosB.text    = result.getLiftsCount()
                 textConexoesCorretasB.text    = result.getCorrectConnectionsCount()
                 textConexoesIncorretasB.text  = result.getIncorrectConnectionsCount()
                 textDetalheTmtB.text          = result.getDetails()

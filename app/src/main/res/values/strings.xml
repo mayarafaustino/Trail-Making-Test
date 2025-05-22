@@ -1,26 +1,31 @@
 <resources>
     <string name="app_name">TMT</string>
 
-    <string name="about_tmta">Olá! Vou te explicar o que você precisa fazer durante o Trail Making Test A (TMT-A).</string>
+<!--    <string name="about_tmta">Olá! Vou te explicar o que você precisa fazer durante o Trail Making Test A (TMT-A).</string>-->
 
-    <string name="about_tmta_part2">Na próxima tela, você verá números de 1 a 25 distribuídos aleatoriamente.
-        Seu objetivo é conectá-los na ordem correta, começando pelo número 1 e seguindo até o 25.</string>
+<!--    <string name="about_tmta_part2">Nesta etapa, você verá <b>círculos com números de 1 a 25</b> espalhados pela tela.-->
+<!--        Seu objetivo é <b>ligar os números em ordem crescente</b>, começando pelo <b>1</b> e indo até o <b>25</b>.</string>-->
 
-    <string name="about_tmta_part3">Para isso, use o dedo para traçar uma linha ligando os números.
-        Assim que o teste começar, procure o número 1 e conecte-o ao 2, depois ao 3, e continue até chegar ao 25.
-        Tente fazer isso o mais rápido possível.
-        Mas não se preocupe! Esse não é um teste de acertos e erros, e sim uma forma de avaliar o seu desempenho.</string>
+<!--    <string name="about_tmta_part3">Para isso, use o dedo para traçar uma linha ligando os números.-->
+<!--        Assim que o teste começar, procure o número 1 e conecte-o ao 2, depois ao 3, e continue até chegar ao 25.-->
+<!--        Tente fazer isso o mais rápido possível.-->
+<!--        Mas não se preocupe! Esse não é um teste de acertos e erros, e sim uma forma de avaliar o seu desempenho.</string>-->
+    <string name="tmt_a_intro">Olá! Vou te explicar o que você precisa fazer durante o Trail Making Test A (TMT-A).</string>
+    <string name="tmt_a_objetivo">Nesta etapa, você verá <b>círculos com números de 1 a 25</b> espalhados pela tela. Seu objetivo é <b>ligar os números em ordem crescente</b>, começando pelo 1 e indo até o 25.</string>
+    <string name="tmt_a_como_fazer">Você pode usar o dedo ou a caneta do tablet para desenhar uma linha ligando os números. <b>Tente não levantar o dedo ou a caneta</b> enquanto estiver ligando os círculos.</string>
+    <string name="tmt_a_passo_a_passo">Quando o teste começar: procure o número 1, ligue-o ao 2, depois ao 3, e continue assim até chegar ao número 25. <b>Tente fazer isso o mais rápido possível</b>. O teste termina quando você tocar o último número e todos os círculos estiverem conectados.</string>
+    <string name="tmt_a_exemplo">Antes de começar a versão oficial, você poderá treinar clicando em “Iniciar Exemplo”. Assim, você experimenta como o teste funciona!</string>
+
 
     <string name="about_tmtb"> Agora vou te explicar o que você precisa fazer durante o Trail Making Test B (TMT-B).</string>
 
-    <string name="about_tmtb_part2">Na próxima tela, haverão números de 1 a 13 e letras de A a L espalhados de forma desorganizada.
-        Seu objetivo é ligar os números e as letras alternadamente, seguindo a ordem correta: 1-A, 2-B, 3-C, e assim por diante,
-        até o número 13 e a letra L. Para fazer isso, use o dedo para traçar uma linha conectando os núm
-        eros e as letras na ordem correta.</string>
+    <string name="about_tmtb_part2">Nessa etapa, haverão <b>números</b> de 1 a 13 e <b>letras</b> de A a L espalhados de forma desorganizada.
+        Seu objetivo é <b>ligar os números e as letras alternadamente</b>, seguindo a ordem correta: 1-A-2-B-3-C, e assim por diante,
+        até o número 13 e a letra L. Para fazer isso, use o dedo ou caneta do tablet para traçar uma linha conectando os núm
+        eros e as letras na ordem correta. <b>Tente não levantar o dedo ou a caneta</b> enquanto estiver ligando os círculos.</string>
 
-    <string name="about_tmtb_part3"> Quando o teste começar, você deve olhar para os números e as letras e começar a ligar
-        o número 1 à letra A, depois o número 2 à letra B, o número 3 à letra C, e assim por diante, até o número 13 e a letra L.
-        Tente fazer isso o mais rápido possível. Assim como na etapa anterior, este também é um teste de avaliação de desempenho, não de certo ou errado.</string>
+    <string name="about_tmtb_part3"> Quando o teste começar, você deve procurar o número 1, ligá-lo à letra A, depois ao número 2, depois à letra B, e assim por diante, até a letra L.
+        <b>Tente fazer isso o mais rápido possível</b>. O teste termina quando você tocar o último número e todos os círculos estiverem conectados.</string>
 
     <string name="start_test">Iniciar Teste</string>
     <string name="go_to_next_tmt">Próxima etapa</string>

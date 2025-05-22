@@ -1,10 +1,17 @@
-package com.example.tmt
+package com.example.tmt.view
 
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.example.tmt.model.OnTestFinishedListener
+import com.example.tmt.model.PathManager
+import com.example.tmt.model.ScreenSize
+import com.example.tmt.model.TestManager
+import com.example.tmt.model.TestResults
+import com.example.tmt.model.TmtType
+import com.example.tmt.model.Circle
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
 {
@@ -68,7 +75,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
             MotionEvent.ACTION_DOWN -> {
                 if (!pathManager.isDrawing)
                     pathManager.startPath(x, y)
-                else
+                else if(!testManager.isTestFinished())
                     pathManager.updatePath(x, y)
                 invalidate()
             }
@@ -81,7 +88,6 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
                     if( testManager.checkEndTest() )
                     {
                         testResults = testManager.createResults(pathManager)
-                        testResults.exibirResultados()
                         listener?.onTestFinished(testResults)
                     }
                     invalidate()

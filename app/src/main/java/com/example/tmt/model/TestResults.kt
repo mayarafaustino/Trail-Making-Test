@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.model
 
 import java.util.Locale
 import java.util.Locale.setDefault
@@ -7,15 +7,16 @@ class TestResults(
     private val tmtType: TmtType,
     private val totalTime: Long,
     private val connections: List<Connection>,
-    private val touchUpList: List<TouchUp>,
+    private val liftList: List<Lift>,
     private val circles: List<Circle> )
 {
 
     companion object {
         val EMPTY = TestResults(TmtType.TMT_A_SAMPLE, 0, emptyList(), emptyList(), emptyList())
-        init {
-                setDefault(Locale("pt", "BR"))
-            }
+        init
+        {
+            setDefault(Locale("pt", "BR"))
+        }
 
     }
 
@@ -25,7 +26,7 @@ class TestResults(
 
     private fun Long.toSeconds(): String
     {
-        return "%.3f".format(this / 1000.0) + "s"
+        return "%.2f".format(this / 1000.0) + "s"
     }
 
     fun getFormattedTotalTime(): String
@@ -86,27 +87,20 @@ class TestResults(
         }
     }
 
-    fun getTouchUpCount(): String
+    fun getLiftsCount(): String
     {
-        return "Toques levantados: ${touchUpList.size}"
+        return "Número de interrupções no traçado: ${liftList.size}"
     }
 
-    fun getTotalTouchUpTime(): String {
-        val total = touchUpList.sumOf { it.calculateDuration() }
-        return "Tempo de toque levantado: ${total.toSeconds()}"
-    }
-
-    //temporario
-    fun exibirResultados()
+    fun getLiftsTotalTime(): String
     {
-        println(getTestType())
-        println(getFormattedTotalTime())
-        println(getTouchUpCount())
-        println(getTotalTouchUpTime())
-        println(getCorrectConnectionsCount())
-        println(getIncorrectConnectionsCount())
-        println(getCorrectConnectionsDetails())
-        println(getIncorrectConnectionsDetails())
+        val total = liftList.sumOf { it.calculateDuration() }
+        return "Tempo total em interrupções: ${total.toSeconds()}"
     }
 
+    fun getTotalTimeWithoutLifts(): String
+    {
+        val totalTimeWithoutLifts = totalTime - liftList.sumOf { it.calculateDuration() }
+        return "Tempo líquido (desconsiderando interrupções): ${totalTimeWithoutLifts.toSeconds()}"
+    }
 }

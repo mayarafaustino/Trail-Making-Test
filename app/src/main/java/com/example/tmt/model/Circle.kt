@@ -1,4 +1,4 @@
-package com.example.tmt
+package com.example.tmt.model
 
 import android.graphics.Color
 import android.graphics.Paint
