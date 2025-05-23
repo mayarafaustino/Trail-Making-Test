@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="HintStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColorHint">#808080</item>
+    </style>
+
+</resources>
