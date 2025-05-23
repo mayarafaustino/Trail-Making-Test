@@ -8,25 +8,15 @@
     tools:context=".controller.HomeActivity">
 
 
-    <TextView
-        android:id="@+id/tmt_title"
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeMaxTextSize="130sp"
-        android:autoSizeMinTextSize="16sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:maxLines="1"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:text="TMTrilhas"
-        android:textAlignment="center"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline15"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline14" />
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline14"
+        app:srcCompat="@mipmap/tmtlogo_foreground" />
 
     <Button
         android:id="@+id/btn_home"

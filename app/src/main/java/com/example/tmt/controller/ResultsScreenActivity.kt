@@ -130,8 +130,9 @@ class ResultsScreenActivity : AppCompatActivity()
 
 
             pdfGenerator.generatePdf(this, html, patientName, patientIdentifier) { file ->
-                Toast.makeText(this, "PDF salvo em: ${file?.path}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "PDF gerado", Toast.LENGTH_LONG).show()
             }
+
 
         }
 
@@ -154,17 +155,7 @@ class ResultsScreenActivity : AppCompatActivity()
             builder.show()
         }
 
-/*
 
-         private val sharedViewModel: SharedViewModel by viewModels()
-        //
-        val bitmap = screenCapture.captureScreen(this)
-
-        //
-        val base64Bitmap = screenCapture.bitmapToBase64(bitmap)
-        sharedViewModel.imageTMTA = base64Bitmap
-        sharedViewModel.imageTMTB = base64Bitmap
-*/
 
 
     }
