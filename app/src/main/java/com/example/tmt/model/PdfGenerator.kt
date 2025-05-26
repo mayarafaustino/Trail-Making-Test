@@ -34,10 +34,11 @@ class PdfGenerator {
 
 
                 onFinish(file)
-                // Exibe um Toast quando o PDF é salvo
-                Toast.makeText(context, "PDF salvo com sucesso!", Toast.LENGTH_LONG).show()
+                
             }
+            
         }
+
     }
 
 

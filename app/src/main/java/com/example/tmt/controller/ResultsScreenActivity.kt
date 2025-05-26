@@ -130,8 +130,10 @@ class ResultsScreenActivity : AppCompatActivity()
 
 
             pdfGenerator.generatePdf(this, html, patientName, patientIdentifier) { file ->
-                Toast.makeText(this, "PDF gerado", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "PDF gerado com sucesso!", Toast.LENGTH_LONG).show()
             }
+
+
 
 
         }
