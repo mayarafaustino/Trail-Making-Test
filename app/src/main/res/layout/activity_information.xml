@@ -266,7 +266,7 @@
         android:layout_height="0dp"
         android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:hint="Digite o nome do paciente"
+        android:hint="Digite o nome do profissional"
         android:inputType="text"
         android:textSize="11sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline35"

@@ -70,13 +70,13 @@
         app:layout_constraintGuide_percent="0.8078125" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline15"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/guideline14"
-        app:srcCompat="@mipmap/tmtlogo_foreground" />
+        app:srcCompat="@drawable/logo_tmtrilhas__1_" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
