@@ -399,8 +399,10 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="638sp"
             android:layout_height="13sp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline104"
             app:layout_constraintEnd_toStartOf="@+id/guideline12"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/guideline11"
@@ -458,8 +460,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="638sp"
+            android:layout_width="0dp"
             android:layout_height="13sp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintEnd_toStartOf="@+id/guideline12"
             app:layout_constraintStart_toStartOf="@+id/guideline11"
             app:layout_constraintTop_toBottomOf="@+id/textView25"
@@ -474,7 +478,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline12"
             app:layout_constraintStart_toStartOf="@+id/guideline11"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
+            app:layout_constraintTop_toBottomOf="@+id/view2">
 
             <TextView
                 android:id="@+id/textView56"
@@ -511,6 +515,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
         <!--espaçamento-->
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@id/expandLayoutB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline80"
