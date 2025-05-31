@@ -400,8 +400,7 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline104"
+            android:layout_height="13dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline12"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/guideline11"
